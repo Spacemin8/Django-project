@@ -1,0 +1,91 @@
+{% load sass_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+  <link  href="{% sass_src 'login.scss' %}" rel="stylesheet" type="text/css">
+  <link rel="icon" href="../../assets/favicon.ico">
+  <title>My First Django</title>
+  </head>
+<body>
+  <div>
+    <div>
+      <div class="menu-bar">
+      <div class="logo-size1"></div>
+      <div class="button-container">
+        <button class="btn-login" @click="handlelogin">Log in</button>
+        <button class="btn-signup btn-eff" @click="handlesignup">Sign up</button>
+      </div>
+      </div>
+    </div>
+    <div class="Login-page">
+      <div class="Login-back">
+       <div class="logo-container">
+        <img src="image/Logo.png" alt="Logo" />
+       </div>
+      </div>
+      <div class="Login-set">
+        <div class="login-container">
+    <div class="title">
+      <p class="text">Welcome Back</p>
+      <p class="text1">
+        Go ahead and log in. Get acces to your incredible
+        <br />
+        account!
+      </p>
+    </div>
+    <div class="log-in">
+       <div class="input-group">
+        <div class="symbol">
+         <img src="../../static/image/Icon2.png" alt="src" />
+        </div>
+        <input
+         type="email"
+         class="input-control"
+         required
+         placeholder="Enter Email"
+        />
+       </div>
+        <div class="input-group">
+        <div class="symbol">
+         <img src="../../static/image/Icon4.png" alt="src" />
+        </div>
+        <input
+         type="text"
+         class="input-control"
+         required
+         placeholder="Enter Password"
+        />
+       </div>
+      <button type="button" class="button3 but-style" @click="login">
+        Log In
+      </button>
+      <button class="btnlog but-style" @click="handleSetPassword">
+        I forgot my password
+      </button>
+    </div>
+    <div class="browser">
+      <button class="button-style">
+        <img src="../../static/image/Vector.png" alt="" />
+      </button>
+      <button class="button-style">
+        <img src="../../static/image/metamask-icon logo.png" class="metamask" alt="" />
+        <img src="../../static/image/Group.png" class="instegram" alt="" />
+      </button>
+      <button class="button-style">
+        <img src="../../static/image/twitter logo1.png" alt="" />
+      </button>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
