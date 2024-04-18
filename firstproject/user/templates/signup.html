@@ -57,7 +57,8 @@
             placeholder="Enter Username"
             />
           </div>
-          <div class="input-group">
+          <form class="input-group" action="{% url 'signup' %}" method="post">
+           {% csrf_token %}
            <div class="symbol">
             <img src="../../static/image/Icon2.png" alt="src" />
            </div>
@@ -67,7 +68,7 @@
            required
            placeholder="Enter Email"
            />
-          </div>
+          </form>
           <div class="input-group">
            <div class="symbol">
             <img src="../../static/image/Icon3.png" alt="src" />

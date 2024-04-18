@@ -250,6 +250,7 @@ body {
   .Login-back {
     display: none; }
   .Login-set {
+    background-image: url("../../static/image/Rectangle 5986.svg"), url("../../static/image/Group.svg");
     background-size: cover;
     width: 100%; }
   .button-style .instegram {

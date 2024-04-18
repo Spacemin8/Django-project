@@ -1,0 +1,135 @@
+{% load sass_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link  href="{% sass_src 'dashboard.scss' %}" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
+  <title>My First Django</title>
+  </head>
+<body>
+  <div class="dashboard-back">
+    <div class="dashbar">
+      <div class="focus-bar">
+    <div class="logo-size2"></div>
+    <div class="btn-container">
+      <button class="btn-Focus">
+        <img src="../../static/image/Homepage.png" alt="home" />
+        <p class="btn-p">Homepage</p>
+      </button>
+      <button class="btn-Focus btn-underline">
+        <img src="../../static/image/FocusPoint.png" alt="focuspoint" />
+        <p class="btn-p">Focus Point</p>
+      </button>
+      <button class="btn-Focus">
+        <img src="../../static/image/Rewards.png" alt="rewards" />
+        <p class="btn-p">Rewards</p>
+      </button>
+      <button class="btn-Focus">
+        <img src="../../static/image/Profile.png" alt="profile" />
+        <p class="btn-p">Profile</p>
+      </button>
+      <button class="btn-Focus">
+        <img src="../../static/image/My statistic.png" alt="mystatistic" />
+        <p class="btn-p">My statistic</p>
+      </button>
+      <button class="btn-Focus">
+        <img src="../../static/image/Pricing.png" alt="pricing" />
+        <p class="btn-p">Pricing</p>
+      </button>
+    </div>
+    <div class="btn-log">
+      <button class="btn-Focus" @click="handlelogout">
+        <img src="../../static/image/Logout.png" alt="logout" />
+        <p class="btn-p">Log out</p>
+      </button>
+    </div>
+    <div class="btn-menu">
+      <img src="../../static/image/menu-04.png" alt="butmenu" />
+    </div>
+      </div>
+    </div>
+    <div>
+      <div>
+         <h1>Your Focus</h1>
+      </div>
+      <div class="focus-menu">
+        <div class="focus-title">
+         <button>In progress</button>
+         <button>completed</button>
+        </div>
+        <div class="focus-main">
+         <div class="focus-head">
+          <div class="tex-g">
+          <h6>Focus Points</h6>
+          <div class="tex-1">
+            <p>12, 254</p>
+            <span>points</span>
+          </div>
+          </div>
+           <button type="button" class="btn-add" @click="showCreateModal">
+           + Add new focus point
+           </button>
+         </div>
+         <div class="hr"></div>
+         <div class="focus-field">
+          <p id="desc">
+            No Focus Points added <br />
+            <span>
+             Focus Point to start you Journey towards <br />
+             self-development !
+            </span>
+          </p>
+          <button class="more-button">Load More</button>
+         </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="focusfooter-menu">
+       <div class="focusfooter-field">
+        <div class="focusfooter-mark">
+        <div class="logo-size3">
+          <img src="../../static/image/Logo111.png" alt="logo" />
+        </div>
+        <div class="gap2"></div>
+        <div class="btn_eff">contact us</div>
+        </div>
+        <div class="focusfooter-dec">
+          <div class="mark-btn">
+            <button class="btn-opa">
+              <img src="../../static/image/Telegram logo.png" alt="tglogo" />
+            </button>
+            <button class="btn-opa">
+              <img src="../../static/image/twitter logo.png" alt="twitter" />
+            </button>
+          </div>
+          <p>
+            FAQ <br />
+            Terms & Conditions <br />
+            <span>Founded by:</span>
+          </p>
+          <div class="mark-img">
+            <img src="../../static/image/Capture.PNG" alt="CPALOGO" />
+            <img src="../../static/image/image 10.png" alt="SEND" />
+          </div>
+        </div>
+       </div>
+       <div class="hr1"></div>
+       <div class="focusfooter-des">© 2023 Design. All right reserves</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

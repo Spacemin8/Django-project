@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "user",
+    'user.apps.UserConfig',
+    'products.apps.ProductsConfig',
     'sass_processor',
 ]
 
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'firstproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'loop7',
+        'USER': 'postgres',
+        'PASSWORD': 'space',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -131,3 +136,22 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, '/user/static')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'spacenm1185@outlook.com'
+EMAIL_HOST_PASSWORD = 'ilovespace118'
+# AUTH_USER_MODEL = 'user.User'
+ASECRET_KEY="accesstokensecret"
+RSECRET_KEY="refreshtokensecret"
