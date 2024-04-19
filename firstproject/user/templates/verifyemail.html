@@ -17,6 +17,63 @@
   <link  href="{% sass_src 'verifyemail.scss' %}" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
   <title>My First Django</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function handleSignup(){
+      window.location.href = "{% url 'signup' %}"; 
+    }
+    function handleLogin(){
+      window.location.href = "{% url 'login' %}"; 
+    }
+    function handleSetPassword(){
+      window.location.href = "{% url 'setpassword' %}"; 
+    }
+    function handeleInput(currentElement) {
+            var maxLength = parseInt(currentElement.attributes["maxlength"].value, 10);
+            var myLength = currentElement.value.length;
+            var nextElement = currentElement.nextElementSibling;
+
+            if (myLength >= maxLength && nextElement && nextElement.tagName === "INPUT") {
+                // Move focus to the next input element
+                nextElement.focus();
+            }
+        }
+     function handleKeyup(currentElement, event) {
+            if (event.key === "Backspace") {
+                var previousElement = currentElement.previousElementSibling;
+                if (currentElement.value.length === 0 && previousElement && previousElement.tagName === "INPUT") {
+                    // Move focus to the previous input element
+                    previousElement.focus();
+                }
+            }
+        }
+    async function verifyCode() {
+      const hasEmptyInput = this.codeInputs.some((val) => val === "");
+      if (hasEmptyInput) {
+        alert("Input correctly!");
+        return;
+      }
+      const code = this.codeInputs.join("");
+      console.log(code);
+      const post_data = {
+        email: localStorage.getItem("email"),
+        verification_code: code,
+      };
+      console.log(post_data);
+      const response = await axios.post(
+        "",
+        post_data
+      );
+      console.log(response.data);
+      if (response.data.message === "success verified") {
+        localStorage.removeItem("email");
+       this.handleSetPassword();
+      } else {
+        alert(response.data.message);
+        return;
+      }
+    }
+  </script>
   </head>
   <body>
     <div>
@@ -25,8 +82,8 @@
         <div class="logo-size1">
         </div>
         <div class="button-container">
-          <button class="btn-login" @click="handlelogin">Log in</button>
-          <button class="btn-signup btn-eff" @click="handlesignup">Sign up</button>
+         <button class="btn-login" onclick="handleLogin()">Log in</button>
+         <button class="btn-signup btn-eff" onclick="handleSignup()">Sign up</button>
         </div>
       </div>
       </div>
@@ -47,15 +104,19 @@
           </div>
           <div class="verify">
            <div class="verify-group">
+            {% for index in code_inputs %}
             <input
             type="text"
             maxlength="1"
             class="in-element"
+            id="codeInput{{ forloop.counter0 }}"
+            name="codeInput{{ forloop.counter0 }}"
             />
+            {% endfor %}
            </div>
           </div>
           <div class="bar">
-           <button @click="verifyCode" class="buttonp but-style">Proceed</button>
+           <button onclick="verifyCode()" class="buttonp but-style">Proceed</button>
           </div>
         </div>
       </div>

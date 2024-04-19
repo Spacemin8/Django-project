@@ -17,6 +17,40 @@
   <link  href="{% sass_src 'signup.scss' %}" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
   <title>My First Django</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function handleVerify(){
+      window.location.href = "{% url 'verifyemail' %}"; 
+    }
+    function handleSignup(){
+      window.location.href = "{% url 'signup' %}"; 
+    }
+    function handleLogin(){
+      window.location.href = "{% url 'login' %}"; 
+    }
+    async function signup(){
+     let username = document.getElementById('username').value;
+     let email =document.getElementById('email').value;
+     let phone =document.getElementById('phone').value;
+     let userData={
+      username:username,
+      email:email,
+      phone:phone
+    }
+    await axios.post('', userData)
+    .then((response)=> {
+          console.log("Signup successful", response.data);
+          const email = userData.email;
+          const username = userData.username;
+          localStorage.setItem("email", email);
+          localStorage.setItem("username", username);
+          this.handleVerify();
+        })
+        .catch((error)=>{
+          console.error("Signup error",error.response.data);
+        });
+    }
+  </script>
   </head>
 <body>
   <div>
@@ -25,8 +59,8 @@
       <div class="logo-size1">
       </div>
       <div class="button-container">
-        <button class="btn-login" @click="handlelogin">Log in</button>
-        <button class="btn-signup btn-eff" @click="handlesignup">Sign up</button>
+        <button class="btn-login" onclick="handleLogin()">Log in</button>
+        <button class="btn-signup btn-eff" onclick="handleSignup()">Sign up</button>
       </div>
       </div>
     </div>
@@ -53,22 +87,23 @@
            <input
             type="text"
             class="input-control"
+            id="username"
             required
             placeholder="Enter Username"
             />
           </div>
-          <form class="input-group" action="{% url 'signup' %}" method="post">
-           {% csrf_token %}
+          <div class="input-group">
            <div class="symbol">
             <img src="../../static/image/Icon2.png" alt="src" />
            </div>
            <input
            type="email"
            class="input-control"
+           id="email"
            required
            placeholder="Enter Email"
            />
-          </form>
+          </div>
           <div class="input-group">
            <div class="symbol">
             <img src="../../static/image/Icon3.png" alt="src" />
@@ -76,14 +111,15 @@
            <input
             type="number"
             class="input-control"
+            id="phone"
             required
             placeholder="Phone Number (Optional)"
            />
           </div>
-          <button type="button" class="button3 but-style" @click="signup">
+          <button type="button" class="button3 but-style" onclick="signup()">
            Proceed
           </button>
-          <button class="btn-sign but-style" @click="handlelogin">
+          <button class="btn-sign but-style" onclick="handleLogin()">
            I already have an account
           </button>
          </div>

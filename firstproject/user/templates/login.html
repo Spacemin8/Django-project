@@ -17,6 +17,20 @@
   <link  href="{% sass_src 'login.scss' %}" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
   <title>My First Django</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function handleSignup(){
+      window.location.href = "{% url 'signup' %}";
+    }
+    function handleLogin(){
+      window.location.href = "{% url 'login' %}";
+    }
+    function handleSetPassword(){
+      window.location.href = "{% url 'setpassword' %}";
+    }
+    function login(){
+    }
+  </script>
   </head>
 <body>
   <div>
@@ -24,8 +38,8 @@
       <div class="menu-bar">
       <div class="logo-size1"></div>
       <div class="button-container">
-        <button class="btn-login" @click="handlelogin">Log in</button>
-        <button class="btn-signup btn-eff" @click="handlesignup">Sign up</button>
+        <button class="btn-login" onclick="handleLogin()">Log in</button>
+        <button class="btn-signup btn-eff" onclick="handleSignup()">Sign up</button>
       </div>
       </div>
     </div>
@@ -68,10 +82,10 @@
          placeholder="Enter Password"
         />
           </div>
-      <button type="button" class="button3 but-style" @click="login">
+      <button type="button" class="button3 but-style" onclick="login()">
         Log In
       </button>
-      <button class="btnlog but-style" @click="handleSetPassword">
+      <button class="btnlog but-style" onclick="handleSetPassword()">
         I forgot my password
       </button>
          </div>

@@ -14,8 +14,7 @@ from django.http import JsonResponse
 from .models import verify,User,Token
 from .forms import UserSignupForm,UserLoginForm,UserVerifyForm,UserPasswordForm
 # Create your views here.
-
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def signup(request):
     template=loader.get_template('signup.html')
     if request.method =='POST':
@@ -52,9 +51,11 @@ def signup(request):
         return JsonResponse({'message': 'UserData saved successfully'},status=200)
     return HttpResponse(template.render())
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def verifyemail(request):
     template=loader.get_template('verifyemail.html')
+    code_inputs = ["", "", "", "", "", ""]
+    context = {'code_inputs': code_inputs}
     if request.method == 'POST':
        email = request.data.get('email', None)
        verification_code = request.data.get('verification_code', None)
@@ -65,12 +66,12 @@ def verifyemail(request):
               return JsonResponse({"message":"success verified"})
            return JsonResponse({"message":"invaild verification code"})
        return JsonResponse({"message":"user does not exist"})
-    return HttpResponse(template.render())
+    return render(request, 'verifyemail.html', context)
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def setpassword(request):
-    template=loader.get_template('setpassword.html')
-    if request.method == 'POST':
+     template=loader.get_template('setpassword.html')
+     if request.method == 'POST':
        username = request.data.get('username', None)
        password = request.data.get('password', None)
        if User.objects.filter(username=username).exists():
@@ -80,9 +81,9 @@ def setpassword(request):
          current_user.save()
          return JsonResponse({"message":"success set password"})
        return JsonResponse({"message":"user does not exist"})
-    return HttpResponse(template.render())
+     return HttpResponse(template.render())
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def login(request):
     template=loader.get_template('login.html')
     if request.method == 'POST':
